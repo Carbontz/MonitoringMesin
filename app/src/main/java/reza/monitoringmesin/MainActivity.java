@@ -1,6 +1,7 @@
 package reza.monitoringmesin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private ButtonPlantAdapter buttonPlantAdapter;
     private Context context;
     private Plant plant;
-
-
+    private Intent intent;
+    private Bundle bundle;
+    private String plantKe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
+        bundle = new Bundle();
         //button plant
         plant = new Plant();
         gridView = (GridView) findViewById (R.id.gvPlant);
@@ -39,8 +42,14 @@ public class MainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this,"Tombol "+Plant.arrayNamaPlant[position]+" di klik.",Toast.LENGTH_SHORT).show();
-
+                plantKe = plant.arrayNamaPlant[position];
+                Toast.makeText(MainActivity.this,"Tombol "+plantKe+" di klik.",Toast.LENGTH_SHORT).show();
+                //transfer nilai antar activity
+                intent = new Intent(getApplicationContext(),MonitoringActivity.class);
+                bundle.putString("Plant", plantKe);
+                intent.putExtras(bundle);
+                //panggil activity baru
+                startActivity(intent);
             }
         });
     }
