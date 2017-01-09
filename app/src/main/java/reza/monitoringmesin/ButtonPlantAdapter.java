@@ -1,30 +1,25 @@
+/**
+ * Created by Reza on 09/01/2017.
+ */
+
+
 package reza.monitoringmesin;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import static java.security.AccessController.getContext;
-import static reza.monitoringmesin.MainActivity.arrayGambarPlant;
-import static reza.monitoringmesin.MainActivity.arrayNamaPlant;
-
-/**
- * Created by Reza on 09/01/2017.
- */
-
-public class ButtonPlantAdapter extends BaseAdapter {
+class ButtonPlantAdapter extends BaseAdapter {
 
     private Context mContext;
     private final String[] judul;
     private final int[] idGambar;
 
-    public ButtonPlantAdapter(Context mContext, String[] judul, int[] idGambar) {
+    ButtonPlantAdapter(Context mContext, String[] judul, int[] idGambar) {
         this.mContext = mContext;
         this.judul = judul;
         this.idGambar = idGambar;

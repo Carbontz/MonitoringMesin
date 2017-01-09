@@ -14,16 +14,16 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import static java.security.AccessController.getContext;
+import static reza.monitoringmesin.Plant.arrayGambarPlant;
 
 public class MainActivity extends AppCompatActivity {
 
     private GridView gridView;
     private ButtonPlantAdapter buttonPlantAdapter;
     private Context context;
+    private Plant plant;
 
-    static final String[] arrayNamaPlant = new String[] {"Plant I", "Plant II", "Plant III", "Plant IV", "Plant V"};
-    static final int[] arrayGambarPlant = new int[] {R.drawable.plant1,R.drawable.plant2,R.drawable.plant3,R.drawable.plant4,
-        R.drawable.plant5};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +31,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        
         //button plant
+        plant = new Plant();
         gridView = (GridView) findViewById (R.id.gvPlant);
-        gridView.setAdapter(new ButtonPlantAdapter(this,arrayNamaPlant,arrayGambarPlant));
+        gridView.setAdapter(new ButtonPlantAdapter(this,plant.arrayNamaPlant,plant.arrayGambarPlant));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this,"Tombol "+arrayNamaPlant[position]+" di klik.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Tombol "+Plant.arrayNamaPlant[position]+" di klik.",Toast.LENGTH_SHORT).show();
+
             }
         });
     }
